@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remote Desktop</title>
+    <link rel="icon" href="./favicon.png" />
+    <link rel="stylesheet" href="../dist/output.css" />
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <!-- animate.style cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      /* Toggle B */
+      input:checked ~ .dot {
+        transform: translateX(100%);
+        /* background-color: #48bb78; */
+        background-color: rgb(7, 41, 73);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="bg-slate-200 dark:bg-slate-800 duration-300 animate__animated"
+      id="navSection"
+    >
+      <div class="container py-3 mx-auto">
+        <!-- Navbar -->
+        <div
+          class="flex items-center justify-between max-w-3xl mx-auto px-5 md:px-0"
+        >
+          <!-- Logo  -->
+          <div class="text-green-600 flex items-center">
+            <i
+              class="fab fa-joomla text-5xl mr-2 fa-flip"
+              style="--fa-animation-duration: 3s"
+            ></i>
+            <span class="text-3xl font-semibold">Joomla</span>
+          </div>
+          <!-- Menu  -->
+          <div class="hidden md:inline">
+            <ul class="flex space-x-8 dark:text-white">
+              <li
+                class="hover:scale-150 duration-200 cursor-pointer hover:underline font-medium text-slate-800 dark:text-slate-200 hover:text-green-600 dark:hover:text-green-600"
+              >
+                Home
+              </li>
+              <li
+                class="hover:scale-150 duration-200 cursor-pointer hover:underline font-medium text-slate-800 dark:text-slate-200 hover:text-green-600 dark:hover:text-green-600"
+              >
+                Why?
+              </li>
+              <li
+                class="hover:scale-150 duration-200 cursor-pointer hover:underline font-medium text-slate-800 dark:text-slate-200 hover:text-green-600 dark:hover:text-green-600"
+              >
+                Features
+              </li>
+              <li
+                class="hover:scale-150 duration-200 cursor-pointer hover:underline font-medium text-slate-800 dark:text-slate-200 hover:text-green-600 dark:hover:text-green-600"
+              >
+                Clients
+              </li>
+            </ul>
+          </div>
+          <!-- menu icon -->
+          <div class="md:hidden" id="openMenu">
+            <i class="fas fa-bars fa-lg text-green-600 cursor-pointer"></i>
+          </div>
+          <!--Start menu modal box -->
+          <div
+            class="absolute bg-gray-300 dark:bg-gray-800 top-0 -left-full w-full h-[100vh] opacity-95 duration-300"
+            id="bg-menu"
+          ></div>
+          <div
+            class="absolute text-slate-900 dark:text-white top-0 -left-full w-full text-center pt-5 duration-300 px-5"
+            id="main-menu"
+          >
+            <div class="flex justify-between items-center pt-2">
+              <!-- Theme Dark / Light -->
+              <div class="md:hidden">
+                <div class="flex items-center justify-center">
+                  <label
+                    for="toggleMenu"
+                    class="flex items-center cursor-pointer"
+                  >
+                    <!-- toggle -->
+                    <div class="relative">
+                      <!-- input -->
+                      <input type="checkbox" id="toggleMenu" class="sr-only" />
+                      <!-- line -->
+                      <div
+                        class="block bg-green-600 w-10 h-6 rounded-full"
+                      ></div>
+                      <!-- dot -->
+                      <div
+                        class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"
+                      ></div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- close Menu  -->
+              <div>
+                <i
+                  class="fas fa-xmark fa-lg cursor-pointer text-green-600 p-1 pt-2"
+                  id="closeMenu"
+                ></i>
+              </div>
+            </div>
+            <ul class="space-y-11 mt-32">
+              <li
+                class="cursor-pointer text-lg font-medium hover:scale-150 hover:text-green-600 duration-300 hover:underline"
+              >
+                Home
+              </li>
+              <li
+                class="cursor-pointer text-lg font-medium hover:scale-150 hover:text-green-600 duration-300 hover:underline"
+              >
+                Why?
+              </li>
+              <li
+                class="cursor-pointer text-lg font-medium hover:scale-150 hover:text-green-600 duration-300 hover:underline"
+              >
+                Features
+              </li>
+              <li
+                class="cursor-pointer text-lg font-medium hover:scale-150 hover:text-green-600 duration-300 hover:underline"
+              >
+                Clients
+              </li>
+            </ul>
+          </div>
+          <!--End menu modal box -->
+          <!-- Theme Dark / Light -->
+          <div class="hidden md:inline">
+            <div class="flex items-center justify-center">
+              <label for="toggle" class="flex items-center cursor-pointer">
+                <!-- toggle -->
+                <div class="relative">
+                  <!-- input -->
+                  <input type="checkbox" id="toggle" class="sr-only" />
+                  <!-- line -->
+                  <div class="block bg-green-600 w-10 h-6 rounded-full"></div>
+                  <!-- dot -->
+                  <div
+                    class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition"
+                  ></div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Navbar section  -->
+    <div class="bg-slate-50 dark:bg-slate-600">
+      <div
+        class="text-8xl pt-20 flex flex-col md:flex-row justify-center text-center px-5 md:px-0"
+      >
+        <h1 class="dark:text-white">Access.</h1>
+        <h1 class="text-green-600">Now.</h1>
+      </div>
+      <div class="text-center p-1 dark:text-white mx-3">
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+      </div>
+      <div
+        class="md:space-x-4 p-5 pb-20 flex flex-col md:flex-row justify-center space-y-3 md:space-y-0"
+      >
+        <div
+          class="text-white p-2 px-4 bg-green-600 rounded-full hover:bg-green-700 border border-green-600 w-48 text-center mx-auto md:mx-0 cursor-pointer"
+        >
+          <i class="fas fa-download"></i>
+          Download Here
+        </div>
+
+        <div
+          class="text-green-600 p-2 px-4 border border-green-600 rounded-full hover:bg-green-600 hover:text-white w-48 text-center mx-auto cursor-pointer"
+        >
+          <i class="fas fa-shopping-cart"></i>
+          Order Here
+        </div>
+      </div>
+    </div>
+    <!-- End Hero section  -->
+    <div class="bg-slate-100 dark:bg-slate-700" id="whySection">
+      <div class="max-w-3xl mx-auto py-10 px-5 md:px-0">
+        <div class="text-green-600 text-center md:text-left font-medium">
+          Remote Desktop Software
+        </div>
+        <div
+          class="text-6xl font-medium my-2 text-center md:text-left text-gray-700 dark:text-white"
+        >
+          Overcoming
+        </div>
+        <div
+          class="text-6xl font-medium my-2 text-center md:text-left text-gray-700 dark:text-white"
+        >
+          distance
+        </div>
+        <div class="text-center md:text-left text-gray-700 dark:text-white">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil unde
+          laborum, officia quam excepturi quod cumque itaque aut magnam eligendi
+          saepe, est voluptates facilis id necessitatibus illum assumenda autem
+          dolore.
+        </div>
+        <div class="flex justify-center md:justify-between">
+          <div
+            class="text-white p-2 px-4 bg-green-600 rounded-full hover:bg-green-700 border border-green-600 w-48 text-center mt-5 cursor-pointer"
+          >
+            <i class="fas fa-book mr-2 fa-lg"></i>
+            Learn More
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Why section  -->
+    <div class="bg-slate-50 dark:bg-slate-600">
+      <div
+        class="max-w-3xl mx-auto py-10 flex flex-col lg:flex-row justify-center gap-3"
+      >
+        <div class="mx-auto">
+          <div class="flex gap-3 flex-col md:flex-row">
+            <div
+              class="w-48 h-48 text-center border border-green-600 p-2 rounded-md cursor-pointer hover:shadow-md hover:scale-110 duration-300 dark:border-green-600"
+            >
+              <div class="text-green-600 py-2">
+                <i class="fas fa-plane-departure fa-2x"></i>
+              </div>
+              <div class="text-green-600 font-semibold text-2xl py-2">
+                <span>Balzing fast</span>
+              </div>
+              <div>
+                <span class="text-sm dark:text-white">
+                  Minimum latency via our own DeskRT codec, Frame rates of 60
+                  fps.
+                </span>
+              </div>
+            </div>
+            <!-- first  -->
+            <div
+              class="w-48 h-48 text-center border hover:border-green-600 p-2 rounded-md cursor-pointer hover:shadow-md hover:scale-110 duration-300"
+            >
+              <div class="text-green-600 py-2">
+                <i class="fas fa-cloud-arrow-down fa-2x"></i>
+              </div>
+              <div class="text-green-600 font-semibold text-2xl py-2">
+                <span>Lightweight</span>
+              </div>
+              <div>
+                <span class="text-sm dark:text-white">
+                  Download 3 MB.
+                  <br />
+                  Start App.
+                  <br />
+                  Done
+                </span>
+              </div>
+            </div>
+            <!-- second  -->
+          </div>
+          <div class="flex gap-3 py-3 flex-col md:flex-row">
+            <div
+              class="w-48 h-48 text-center border hover:border-green-600 p-2 rounded-md cursor-pointer hover:shadow-md hover:scale-110 duration-300"
+            >
+              <div class="text-green-600 py-2">
+                <i class="fas fa-lock fa-2x"></i>
+              </div>
+              <div class="text-green-600 font-semibold text-2xl py-2">
+                <span>Secure</span>
+              </div>
+              <div>
+                <span class="text-sm dark:text-white">
+                  Military-grade TLS 1.2 security, 256-bit AES Transport
+                  Encryption
+                </span>
+              </div>
+            </div>
+            <!-- third  -->
+            <div
+              class="w-48 h-48 text-center border hover:border-green-600 p-2 rounded-md cursor-pointer hover:shadow-md hover:scale-110 duration-300"
+            >
+              <div class="text-green-600 py-2">
+                <i class="fas fa-desktop fa-2x"></i>
+              </div>
+              <div class="text-green-600 font-semibold text-2xl py-2">
+                <span>Everywhere</span>
+              </div>
+              <div>
+                <span class="text-sm dark:text-white">
+                  Works on Windows, macOS, IOS, Andriod, Linux, Raspberry Pi
+                </span>
+              </div>
+            </div>
+            <!-- fourth  -->
+          </div>
+        </div>
+        <div class="mx-auto flex flex-col justify-center items-center">
+          <div class="text-4xl p-5 text-center dark:text-white">
+            Why 500+
+            <br />
+            million users
+            <br />
+            love AnyDesk
+          </div>
+          <div class="mx-auto">
+            <button
+              class="bg-green-600 hover:bg-green-700 rounded-full cursor-pointer text-white p-2 px-5"
+            >
+              <i class="fas fa-eye mr-1"></i>
+              Discover
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Features section  -->
+    <div class="bg-slate-100 dark:bg-slate-700">
+      <div class="max-w-3xl mx-auto py-10 px-5 md:px-0">
+        <div class="row flex justify-between flex-col md:flex-row">
+          <div class="col-span-4 py-5 md:py-0">
+            <div class="font-medium text-green-600 text-4xl text-center py-3">
+              500+ Million
+            </div>
+            <div class="text-center text-gray-700 dark:text-white">
+              Downloads
+            </div>
+          </div>
+          <div class="col-span-4 py-5 md:py-0">
+            <div class="font-medium text-green-600 text-4xl text-center py-3">
+              400+ Million
+            </div>
+            <div class="text-center text-gray-700 dark:text-white">
+              Sessions per month
+            </div>
+          </div>
+          <div class="col-span-4 py-5 md:py-0">
+            <div class="font-medium text-green-600 text-4xl text-center py-3">
+              300+ Million
+            </div>
+            <div class="text-center text-gray-700 dark:text-white">
+              Bridged miles per month
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Why section  -->
+    <div class="bg-slate-50 dark:bg-slate-600">
+      <div class="max-w-3xl mx-auto py-14 px-5 md:px-0">
+        <div
+          class="text-slate-700 text-3xl font-medium text-center dark:text-white"
+        >
+          Joomla Fits you needs
+        </div>
+        <!-- title  -->
+        <div class="flex justify-between flex-col md:flex-row py-5">
+          <div class="w-60 my-5 md:my-0 mx-auto px-5">
+            <div class="text-center pt:0 md:pt-5">
+              <i class="fas fa-cloud fa-2x text-green-600"></i>
+            </div>
+            <div class="text-center text-lg font-medium dark:text-white py-2">
+              Runs in Cloud or On-Premises
+            </div>
+            <div class="text-center text-sm text-slate-800 dark:text-slate-300">
+              Choose our cloud solution to benefit from your own servers and
+              work completely independently.
+            </div>
+            <div
+              class="text-center text-sm text-green-600 underline cursor-pointer pt-3"
+            >
+              See More
+            </div>
+          </div>
+          <div class="w-60 my-5 md:my-0 mx-auto px-5">
+            <div class="text-center pt-5">
+              <i class="fas fa-mobile fa-2x text-green-600"></i>
+            </div>
+            <div class="text-center text-lg font-medium dark:text-white py-2">
+              Full mobile support
+            </div>
+            <div class="text-center text-sm text-slate-800 dark:text-slate-300">
+              Accept and control desktops, servers, machines, and devices, via
+              smartphone or tablet, Cross-compatible and platform independent.
+            </div>
+            <div
+              class="text-center text-sm text-green-600 underline cursor-pointer pt-3"
+            >
+              See More
+            </div>
+          </div>
+          <div class="w-60 my-5 md:my-0 mx-auto px-5">
+            <div class="text-center pt-5">
+              <i class="fas fa-pen fa-2x text-green-600"></i>
+            </div>
+            <div class="text-center text-lg font-medium dark:text-white py-2">
+              Flexibility & Customization
+            </div>
+            <div class="text-center text-sm text-slate-800 dark:text-slate-300">
+              Create your own verison of AnyDesk and fit it to your individed
+              needs. Allow a consistent brand experience for your users.
+            </div>
+            <div
+              class="text-center text-sm text-green-600 underline cursor-pointer pt-3"
+            >
+              See More
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Client section  -->
+    <div class="bg-slate-100 dark:bg-slate-700">
+      <div class="max-w-3xl mx-auto py-10 px-5 md:px-0">
+        <h1
+          class="text-slate-900 font-medium text-3xl text-center dark:text-white"
+        >
+          Every operation system, every device
+        </h1>
+        <p class="text-slate-900 text-center py-5 dark:text-slate-300">
+          Joomla runs native clients on all major plaforms.
+        </p>
+        <div
+          class="flex justify-center flex-col md:flex-row dark:text-white gap-10 pt-5"
+        >
+          <div class="flex gap-10 mx-auto md:mx-0">
+            <div
+              class="text-center hover:scale-125 duration-300 cursor-pointer"
+            >
+              <i class="fab fa-windows fa-2x"></i>
+              <p>WindowOS</p>
+            </div>
+            <div
+              class="text-center hover:scale-125 duration-300 cursor-pointer"
+            >
+              <i class="fab fa-apple fa-2x"></i>
+              <p>macOs</p>
+            </div>
+            <div
+              class="text-center hover:scale-125 duration-300 cursor-pointer"
+            >
+              <i class="fab fa-linux fa-2x"></i>
+              <p>LinuxOs</p>
+            </div>
+          </div>
+          <div class="flex gap-10 mx-auto md:mx-0">
+            <div
+              class="text-center hover:scale-125 duration-300 cursor-pointer"
+            >
+              <i class="fab fa-android fa-2x"></i>
+              <p>AndriodOs</p>
+            </div>
+            <div
+              class="text-center hover:scale-125 duration-300 cursor-pointer"
+            >
+              <i class="fab fa-raspberry-pi fa-2x"></i>
+              <p>Raspberry Pi</p>
+            </div>
+            <div
+              class="text-center hover:scale-125 duration-300 cursor-pointer"
+            >
+              <i class="fab fa-chrome fa-2x"></i>
+              <p>ChromeOs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Why section  -->
+    <div class="bg-slate-200 dark:bg-slate-800">
+      <div class="max-w-3xl mx-auto p-5 md:px-0">
+        <div class="py-3 flex justify-between">
+          <div class="text-green-600 flex items-center">
+            <i
+              class="fab fa-joomla fa-2x mr-2"
+              style="--fa-animation-duration: 3s"
+            ></i>
+            <span class="text-2xl font-semibold">Joomla</span>
+          </div>
+          <div
+            class="flex flex-col md:flex-row items-center space-y-5 md:space-y-0 space-x-5 font-medium dark:text-slate-200"
+          >
+            <p class="hover:underline cursor-pointer hover:text-green-600">
+              Privacy Notic
+            </p>
+            <p class="hover:underline cursor-pointer hover:text-green-600">
+              Contact
+            </p>
+            <p class="hover:underline cursor-pointer hover:text-green-600">
+              Why love?
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Footer section  -->
+    <!-- waypoint cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+    <script src="./theme.js"></script>
+    <script src="./menu.js"></script>
+    <script src="./waypoint.js"></script>
+  </body>
+</html>
