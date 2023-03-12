@@ -5,4 +5,4 @@ live demon link
 
 https://paingthuhtwe.github.io/remote-desktop/
 
-![alt text] (https://github.com/paingthuhtwe/remote-desktop/blob/96d92532427fc81bf6571d377c23098b7b414ee2/src/meta.jpg)
+![alt text](https://github.com/paingthuhtwe/remote-desktop/blob/96d92532427fc81bf6571d377c23098b7b414ee2/src/meta.jpg)
